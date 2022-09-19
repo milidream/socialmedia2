@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
+
+// Route::resources('/posts', PostController::class);
+// Route::resources('/posts', CommentController::class);
+// Route::resources('/posts', LikeController::class);
 
 require __DIR__.'/auth.php';
