@@ -2,65 +2,42 @@
 
 namespace App\Observers;
 
+use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostObserver
 {
-    /**
-     * Handle the Post "created" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
+    public function creating(Post $post)
+    {
+        $post->owner()->associate(Auth::user());
+    }
+
     public function created(Post $post)
     {
         //
     }
 
-    /**
-     * Handle the Post "updated" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
     public function updated(Post $post)
     {
         //
     }
 
-    public function deleting()
+    public function deleting(Post $post)
     {
-
+        $post->comments()->delete();
     }
 
-    /**
-     * Handle the Post "deleted" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
     public function deleted(Post $post)
     {
         //
     }
 
-    /**
-     * Handle the Post "restored" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
     public function restored(Post $post)
     {
         //
     }
 
-    /**
-     * Handle the Post "force deleted" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
     public function forceDeleted(Post $post)
     {
         //

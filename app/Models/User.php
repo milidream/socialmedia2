@@ -33,12 +33,48 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'owner_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'owner_id');
+    }
+
+    public function likedComments() {
+        return $this->morphedByMany(Comment::class, 'likeable');
+    }
+
+    public function likedPosts() {
+        return $this->morphedByMany(Post::class, 'likeable');
+    }
+
+    public function friendsFrom()
+    {
+        return $this->belongsToMany(User::class, 'friendship', 'friend1_id', 'friend2_id');
+    }
+
+    public function friendsTo()
+    {
+        return $this->belongsToMany(User::class, 'friendship', 'friend2_id', 'friend1_id');
+    }
+
+    public function getFriends() {
+        return $this->query()
+            ->select('friends.*')
+            ->join('friendship', function($join) {
+                $join->on('friendship.friend1_id', 'users.id')
+                    ->orOn('friendship.friend2_id', 'users.id');
+                //->where('is_accepted', true);
+            })
+            ->join('users as friends', function($join) {
+                $join->on('friendship.friend1_id', 'friends.id')
+                    ->orOn('friendship.friend2_id', 'friends.id');
+            })
+            ->where('users.id', $this->getKey())
+            ->whereNot('friends.id', $this->getKey())
+            ->get();
+    }
 }
