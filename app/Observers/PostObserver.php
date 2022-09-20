@@ -25,7 +25,8 @@ class PostObserver
 
     public function deleting(Post $post)
     {
-        $post->comments()->delete();
+        $post->userLiked()->detach();
+        $post->comments->each->delete();
     }
 
     public function deleted(Post $post)

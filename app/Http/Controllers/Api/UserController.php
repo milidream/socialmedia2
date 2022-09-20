@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Orion\Http\Controllers\Controller;
 use Orion\Concerns\DisableAuthorization;
@@ -17,7 +16,7 @@ class UserController extends Controller
 
     protected $model = User::class;
 
-    protected function runIndexFetchQuery(Request $request, Builder $query, int $paginationLimit)
+    protected function runIndexFetchQuery(Request $request, Builder $query, int $paginationLimit): \Illuminate\Contracts\Pagination\Paginator|\Illuminate\Database\Eloquent\Collection
     {
         $results = parent::runIndexFetchQuery($request, $query, $paginationLimit);
 

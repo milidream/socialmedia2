@@ -23,6 +23,11 @@ class CommentObserver
         //
     }
 
+    public function deleting(Comment $comment)
+    {
+        $comment->userLiked()->detach();
+    }
+
     public function deleted(Comment $comment)
     {
         //

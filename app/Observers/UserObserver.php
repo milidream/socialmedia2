@@ -18,7 +18,10 @@ class UserObserver
 
     public function deleting(User $user)
     {
-        $user->comments()->delete();
+        $user->likedComments()->detach();
+        $user->comments->each->delete();
+        $user->likedPosts()->detach();
+        $user->posts->each->delete();
     }
 
     public function deleted(User $user)

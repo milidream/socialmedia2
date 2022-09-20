@@ -45,7 +45,7 @@ class UserFactory extends Factory
                 ->for($user, 'owner')
                 ->create();
 
-                
+
         });
     }
 
