@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\FriendController;
+use App\Http\Controllers\Api\LikeController;
+use App\Http\Controllers\Api\LikesPostsController;
+use App\Http\Controllers\Api\UserCommentsController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserPostsController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,5 +38,7 @@ Route::group(['as' => 'api.'], function() {
     Orion::resource('users', UserController::class);
     Orion::resource('posts', PostController::class);
     Orion::resource('comments', CommentController::class);
-});
+    Orion::morphedByManyResource('users', 'posts', UserPostsController::class);
+    Orion::morphedByManyResource('users', 'comments', UserCommentsController::class);
 
+});

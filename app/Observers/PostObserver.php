@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\NewPost;
 use Illuminate\Support\Facades\Auth;
 
 class PostObserver
@@ -15,7 +16,7 @@ class PostObserver
 
     public function created(Post $post)
     {
-        //
+        $post->user->notify(new NewPost());
     }
 
     public function updated(Post $post)

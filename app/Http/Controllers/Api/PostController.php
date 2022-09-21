@@ -13,6 +13,7 @@ class PostController extends Controller
 {
 
     protected $model = Post::class;
+    protected string $relation = 'comments';
 
     use DisableAuthorization;
     use DisablePagination;
