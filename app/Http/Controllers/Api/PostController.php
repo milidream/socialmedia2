@@ -17,4 +17,10 @@ class PostController extends Controller
     use DisableAuthorization;
     use DisablePagination;
 
+    public function includes(): array
+    {
+        return [
+            'owner'
+        ];
+    }
 }
