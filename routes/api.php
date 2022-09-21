@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\FriendController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,3 +35,4 @@ Route::group(['as' => 'api.'], function() {
     Orion::resource('posts', PostController::class);
     Orion::resource('comments', CommentController::class);
 });
+

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('profile_picture')->default('cover_picture.jpeg');
-            $table->string('cover_picture')->default('profile_picture.png');
+            $table->string('profile_picture')->default('https://francescobaittiner.it/wp-content/uploads/2020/01/User-Account-Person-PNG-File.png');
+            $table->string('cover_picture')->default('https://www.discoverlosangeles.com/sites/default/files/images/2019-10/mla-team-header.jpg?width=2600&fit=bound&quality=72&auto=webp');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

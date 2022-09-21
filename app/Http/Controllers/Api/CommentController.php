@@ -13,4 +13,10 @@ class CommentController extends Controller
 
     use DisableAuthorization;
 
+    public function includes(): array
+    {
+        return [
+            'owner'
+        ];
+    }
 }
