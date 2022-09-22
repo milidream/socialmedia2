@@ -24,8 +24,8 @@ class UserFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
-            'profile_picture' => 'picture_profile.png',
-            'cover_picture' => 'picture_cover.jpeg',
+            'profile_picture' => 'https://francescobaittiner.it/wp-content/uploads/2020/01/User-Account-Person-PNG-File.png',
+            'cover_picture' => 'https://www.discoverlosangeles.com/sites/default/files/images/2019-10/mla-team-header.jpg?width=2600&fit=bound&quality=72&auto=webp',
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
         ];
